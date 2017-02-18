@@ -20,3 +20,4 @@ while True:
     albumId = redisClient.retrieve(cardId)
 
     # Based on Redis output, mopidy can be called
+    # I AM THE MASTER DEPLOYER

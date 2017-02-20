@@ -2,7 +2,8 @@ import redis
 
 class RedisClient:
     def __init__(self):
-        self.name = "redis"
+        self.r = redis.StrictRedis(host='192.168.1.124', port=6379)
+
 
     def retrieve(self,key):
-        return redis.get(key)
+        return r.get(key)

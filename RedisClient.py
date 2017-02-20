@@ -1,5 +1,5 @@
 import redis
 
-Class RedisClient:
+class RedisClient:
     def __init__(self):
-        self.name = "redis" 
+        self.name = "redis"

@@ -21,6 +21,7 @@ while True:
 
     print('Got new card with UID: 0x{0}' + cardId)
     # Based on the card id, something can be fetched from REDIS
-    #albumId = redisClient.retrieve(cardId)
+    albumId = redisClient.retrieve(cardId)
+    print('Got album ' + albumId)
     # Based on Redis output, mopidy can be called
     # I AM THE MASTER DEPLOYER

@@ -10,6 +10,7 @@ while True:
     cardId = cardListener.checkCard()
     if cardId is None:
         # STOP MOPIDY PLAYBACK
+        cachedCardId = None
         continue
 
     if cardId == cachedCardId:

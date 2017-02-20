@@ -21,4 +21,4 @@ class CardListener:
         if uid is None:
             return None
         else:
-            return format(binascii.hexlify(uid))
+            return format(binascii.b2a(uid))

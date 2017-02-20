@@ -18,4 +18,7 @@ class CardListener:
 
     def checkCard(self):
         uid = self.pn532.read_passive_target()
-        return format(binascii.hexlify(uid))
+        if uid is None:
+            return None
+        else:
+            return format(binascii.hexlify(uid))

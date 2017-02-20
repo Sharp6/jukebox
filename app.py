@@ -1,12 +1,15 @@
+import CardListener
+
 cardListener = CardListener()
-redisClient = RedisClient()
-mopidyClient = MopidyClient()
+#redisClient = RedisClient()
+#mopidyClient = MopidyClient()
 
 cachedCardId
 
 while True:
     cardId = cardListener.checkCard()
     if cardId is None:
+        # STOP MOPIDY PLAYBACK
         continue
 
     if cardId == cachedCardId:
@@ -17,7 +20,7 @@ while True:
     print('Got new card with UID: 0x{0}'.cardId
 
     # Based on the card id, something can be fetched from REDIS
-    albumId = redisClient.retrieve(cardId)
+    #albumId = redisClient.retrieve(cardId)
 
     # Based on Redis output, mopidy can be called
     # I AM THE MASTER DEPLOYER

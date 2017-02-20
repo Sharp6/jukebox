@@ -1,4 +1,4 @@
-import CardListener
+from CardListener import CardListener
 
 cardListener = CardListener()
 #redisClient = RedisClient()

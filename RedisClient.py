@@ -6,4 +6,5 @@ class RedisClient:
 
 
     def retrieve(self,key):
+        print('Retrieving album for ' + key)
         return self.r.get(key)

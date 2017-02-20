@@ -1,7 +1,8 @@
 from CardListener import CardListener
+from RedisClient import RedisClient
 
 cardListener = CardListener()
-#redisClient = RedisClient()
+redisClient = RedisClient()
 #mopidyClient = MopidyClient()
 
 cachedCardId = None

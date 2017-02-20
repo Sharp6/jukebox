@@ -6,4 +6,4 @@ class RedisClient:
 
 
     def retrieve(self,key):
-        return r.get(key)
+        return self.r.get(key)

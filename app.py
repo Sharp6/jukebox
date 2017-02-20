@@ -4,7 +4,7 @@ cardListener = CardListener()
 #redisClient = RedisClient()
 #mopidyClient = MopidyClient()
 
-cachedCardId
+cachedCardId = None
 
 while True:
     cardId = cardListener.checkCard()

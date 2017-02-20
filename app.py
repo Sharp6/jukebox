@@ -17,7 +17,7 @@ while True:
 
     cachedCardId = cardId
 
-    print('Got new card with UID: 0x{0}'.cardId
+    print('Got new card with UID: 0x{0}'.cardId)
     # Based on the card id, something can be fetched from REDIS
     #albumId = redisClient.retrieve(cardId)
     # Based on Redis output, mopidy can be called

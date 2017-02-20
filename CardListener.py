@@ -12,7 +12,7 @@ class CardListener:
 
         self.pn532 = PN532.PN532(cs=CS, sclk=SCLK, mosi=MOSI, miso=MISO)
         self.pn532.begin()
-        print('Found PN532 with firmware version: {0}.{1}'.format(ver, rev))
+        print('Found PN532')
 
         self.pn532.SAM_configuration()
 

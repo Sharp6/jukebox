@@ -30,13 +30,11 @@ while True:
     cachedCardId = cardId
 
     logger.info('Got new card with UID: ' + cardId)
-    print('Got new card with UID: ' + cardId)
     # Based on the card id, something can be fetched from REDIS
     albumId = redisClient.retrieve(cardId)
 
     if albumId is None:
         logger.warning("No album to be found for card " + cardId)
-        print("No album to be found for card " + cardId)
         continue
 
     logger.info('Got album ' + albumId)

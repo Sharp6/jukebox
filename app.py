@@ -18,10 +18,13 @@ cachedCardId = None
 
 while True:
     cardId = cardListener.checkCard()
+
     if cardId is None:
-        # STOP MOPIDY PLAYBACK
-        cachedCardId = None
-        mopidyClient.stop()
+        if cachedCardId is not None:
+            # STOP MOPIDY PLAYBACK
+            cachedCardId = None
+            mopidyClient.stop()
+            cachedCardId = None
         continue
 
     if cardId == cachedCardId:

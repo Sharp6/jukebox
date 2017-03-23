@@ -21,7 +21,7 @@ class MopidyClient:
 
         tracks = j['result']['tracks'][0]['uri']
 
-        loadData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.add", "params": { "uri": "' + track + '" } }'
+        loadData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.add", "params": { "uri": "' + tracks + '" } }'
         requests.post(self.url, data=loadData)
         requests.post(self.url, data=self.playData)
 

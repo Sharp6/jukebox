@@ -9,8 +9,19 @@ class MopidyClient:
 
     def play(self,id):
         print "MOPIDY PLAYING"
-        loadData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.add", "params": { "uri": "' + id + '" } }'
+        getTracks = '{ "jsonrpc": "2.0", "id": 1, "method": "core.playlists.lookup", "params": { "uri": "m3u:handjesdraaien.m3u8" } }'
+
+
+
         requests.post(self.url, data=self.clearData)
+        r = requests.post(self.url, data=getTracks)
+        j = r.json()
+        print "GOT JSON"
+        print j
+
+        tracks = j.result.tracks[0].uri
+
+        loadData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.add", "params": { "uri": "' + track + '" } }'
         requests.post(self.url, data=loadData)
         requests.post(self.url, data=self.playData)
 

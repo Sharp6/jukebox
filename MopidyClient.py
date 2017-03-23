@@ -19,7 +19,7 @@ class MopidyClient:
         print "GOT JSON"
         print j
 
-        tracks = j.result.tracks[0].uri
+        tracks = j['result']['tracks'][0]['uri']
 
         loadData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.add", "params": { "uri": "' + track + '" } }'
         requests.post(self.url, data=loadData)

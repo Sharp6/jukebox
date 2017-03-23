@@ -9,11 +9,13 @@ class MopidyClient:
 
     def play(self,id):
 	print("playing" + id);
+        print "MOPIDY PLAYING"
         loadData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.add", "params": { "uri": "' + id + '" } }'
-        requests.post(self.url, data=self.clearData)
+        #requests.post(self.url, data=self.clearData)
         requests.post(self.url, data=loadData)
         requests.post(self.url, data=self.playData)
 
     def stop(self):
+        print "MOPIDY STOPPING"
         requests.post(self.url, data=self.stopData)
         requests.post(self.url, data=self.clearData)

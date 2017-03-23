@@ -15,7 +15,8 @@ class ConfigServer():
 
     def setCard(self, cardId):
         with self.app.app_context():
-            self.socketio.emit('setCard', jsonify({ cardId: cardId }))
+            with app.test_request_context():
+                self.socketio.emit('setCard', jsonify({ cardId: cardId }))
 
     def flaskThread(self):
         self.socketio.run(self.app)

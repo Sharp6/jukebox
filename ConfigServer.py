@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
 from flask_socketio import SocketIO
-import _thread
+import thread
 
 class ConfigServer():
     def __init__(self):

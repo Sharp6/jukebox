@@ -5,7 +5,7 @@ import Adafruit_PN532 as PN532
 
 class CardListener:
     def __init__(self):
-        CS   = 18
+        CS   = 16
         MOSI = 23
         MISO = 24
         SCLK = 25

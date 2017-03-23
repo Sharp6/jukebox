@@ -1,6 +1,7 @@
 from CardListener import CardListener
 from RedisClient import RedisClient
 from MopidyClient import MopidyClient
+from ConfigServer import ConfigServer
 
 import logging
 logger = logging.getLogger('jukebox')
@@ -13,25 +14,28 @@ logger.setLevel(logging.INFO)
 cardListener = CardListener()
 redisClient = RedisClient()
 mopidyClient = MopidyClient()
+configServer = ConfigServer()
 
 cachedCardId = None
 
 while True:
     cardId = cardListener.checkCard()
 
-    if cardId is None:
-        if cachedCardId is not None:
-            # STOP MOPIDY PLAYBACK
-            cachedCardId = None
-            mopidyClient.stop()
-            cachedCardId = None
-        continue
-
+    # Situation is the same, do nothing
     if cardId == cachedCardId:
         continue
 
+    # Situation changed!
     cachedCardId = cardId
 
+    # New situation: Card is removed
+    if cardId is None:
+        # STOP MOPIDY PLAYBACK
+        mopidyClient.stop()
+        continue
+
+    # New situation: New card found!
+    configServer.setCard(cardId)
     logger.info('Got new card with UID: ' + cardId)
     # Based on the card id, something can be fetched from REDIS
     albumId = redisClient.retrieve(cardId)

@@ -23,7 +23,7 @@ class ConfigServer():
 
     def run(self):
         print("Starting")
-        _thread.start_new_thread(self.flaskThread,())
+        thread.start_new_thread(self.flaskThread,())
 
 if __name__ == '__main__':
     print("Running standalone")

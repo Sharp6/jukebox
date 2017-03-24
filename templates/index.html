@@ -26,10 +26,10 @@
             vm.connected(true);
         });
 
-        socket.on('setCard', msg) {
+        socket.on('setCard', function(msg) {
           console.log("SetCard Message:", msg);
           vm.currentCard(msg.cardId);
-        }
+        });
 
         ko.applyBindings(vm);
     </script>

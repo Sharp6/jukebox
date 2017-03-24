@@ -11,7 +11,7 @@ class MopidyClient:
         requests.post(self.url, data=self.setVolume)
 
     def play(self,uri):
-	    print("MOPIDY PLAYING " + uri)
+        print "MOPIDY PLAYING " + uri
         requests.post(self.url, data=self.clearData)
 
         type = uri.split(:)[0]

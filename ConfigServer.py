@@ -18,7 +18,7 @@ class ConfigServer():
             with self.app.test_request_context():
                 print "ConfigServer trying to send " + cardId
                 #self.socketio.emit('setCard', jsonify({ cardId }))
-                self.socketio.emit('setCard', "cardId")
+                self.socketio.emit('setCard', cardId)
 
     def flaskThread(self):
         self.socketio.run(self.app, "0.0.0.0")

@@ -16,6 +16,8 @@ class MopidyClient:
 
         type = uri.split(":")[0]
 
+        loadUri = None
+
         if type == "file":
             print "Loading file"
             loadUri = uri
@@ -28,10 +30,11 @@ class MopidyClient:
             j = r.json()
             loadUri = j['result']['tracks'][0]['uri']
 
-        requests.post(self.url, data=self.clearData)
-        loadData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.add", "params": { "uri": "' + loadUri + '" } }'
-        requests.post(self.url, data=loadData)
-        requests.post(self.url, data=self.playData)
+        if loadUri is not None:
+            requests.post(self.url, data=self.clearData)
+            loadData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.add", "params": { "uri": "' + loadUri + '" } }'
+            requests.post(self.url, data=loadData)
+            requests.post(self.url, data=self.playData)
 
     def stop(self):
         print "MOPIDY STOPPING"

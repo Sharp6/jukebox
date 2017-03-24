@@ -22,7 +22,7 @@ class MopidyClient:
 
         # Currently only loads the first track of a playlist
         if type == "m3u":
-            print "Loading M3U"
+            print "Loading M3U for " + uri
             getTracks = '{ "jsonrpc": "2.0", "id": 1, "method": "core.playlists.lookup", "params": { "uri": "' + uri + '" } }'
             r = requests.post(self.url, data=getTracks)
             j = r.json()

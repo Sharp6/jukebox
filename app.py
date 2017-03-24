@@ -16,6 +16,8 @@ redisClient = RedisClient()
 mopidyClient = MopidyClient()
 configServer = ConfigServer()
 
+
+configServer.run()
 cachedCardId = None
 
 while True:

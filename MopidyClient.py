@@ -14,7 +14,7 @@ class MopidyClient:
         print "MOPIDY PLAYING " + uri
         requests.post(self.url, data=self.clearData)
 
-        type = uri.split(:)[0]
+        type = uri.split(":")[0]
 
         if type == "file":
             print "Loading file"

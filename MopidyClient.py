@@ -5,7 +5,10 @@ class MopidyClient:
         self.clearData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.tracklist.clear" }'
         self.playData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.playback.play" }'
         self.stopData = '{ "jsonrpc": "2.0", "id": 1, "method": "core.playback.stop" }'
+        self.setVolume = '{ "jsonrpc": "2.0", "id": 1, "method": "core.mixer.set_volume", "params": { "volume": 50} }'
         self.url = 'http://127.0.0.1:6680/mopidy/rpc'
+
+        equests.post(self.url, data=self.clearData)
 
     def play(self,id):
 	print("playing" + id);

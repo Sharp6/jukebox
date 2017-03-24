@@ -28,7 +28,7 @@
 
         socket.on('setCard', function(msg) {
           console.log("SetCard Message:", msg);
-          vm.currentCard(msg.cardId);
+          vm.currentCard(msg);
         });
 
         ko.applyBindings(vm);

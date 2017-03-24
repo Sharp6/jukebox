@@ -43,6 +43,7 @@ while True:
     albumId = redisClient.retrieve(cardId)
 
     if albumId is None:
+        print "No album to be found for card " + cardId
         logger.warning("No album to be found for card " + cardId)
         continue
 

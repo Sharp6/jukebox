@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/html" id="card-template">
+      <h3>Card Template</h3>
+      <p>Current card: <span data-bind="text:$data"></span></p>
+    </script>
+  </head>
+  <body>
+
+
+    <h2>Todo</h2>
+    <ul>
+      <li>How to send a command to write cards?</li>
+      <li>These would be easy to do with mopidy.js, or should we go through the bus?
+        <ul>
+          <li>How to list tracks available in Mopidy?</li>
+          <li>How to send mopidy commands?</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Content</h2>
+    <div id="albumDiv">
+      <p>Current album: <span data-bind="text:album"></span></p>
+    </div>
+    <div id="cardDiv">
+      <div data-bind="template: { name: 'card-template', data: card }"></div>
+    </div>
+
+    <div id="systemDiv">
+      <h2>System status</h2>
+      <ul data-bind="foreach:system">
+        <li data-bind="text:$data"></li>
+      </ul>
+    </div>
+
+    <script src="/lib/knockout-3.4.2.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var systemVm = {
+        system: ko.observableArray(["Knockout.js started"])
+      };
+      var cardVm = {
+        card: ko.observable()
+      };
+      var albumVm = {
+        album: ko.observable()
+      }
+
+      ko.applyBindings(systemVm, document.getElementById('systemDiv'));
+      ko.applyBindings(cardVm, document.getElementById('cardDiv'));
+      ko.applyBindings(albumVm, document.getElementById('albumDiv'));
+
+      var socket = io.connect('http://localhost:1804');
+      socket.on('message', function (data) {
+        //socket.emit('my other event', { my: 'data' });
+        console.log(data);
+
+        if(data.system) {
+          systemVm.system.push(data.system);
+        }
+
+        if(data.card) {
+          cardVm.card(data.card);
+        }
+
+        if(data.album) {
+          albumVm.album(data.album);
+        }
+      });
+
+    </script>
+  </body>
+</html>

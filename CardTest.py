@@ -3,7 +3,7 @@ import sys
 
 import Adafruit_PN532 as PN532
 
-CS   = 18
+CS   = 16
 MOSI = 23
 MISO = 24
 SCLK = 25

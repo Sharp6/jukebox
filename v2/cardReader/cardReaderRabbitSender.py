@@ -6,7 +6,7 @@ class CardReaderRabbitSender:
         self.exchange = 'jukeboxExchange'
 
     def publish(self, message):
-        connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.1.122'))
         channel = connection.channel()
         channel.exchange_declare(exchange=self.exchange, type='topic')
 

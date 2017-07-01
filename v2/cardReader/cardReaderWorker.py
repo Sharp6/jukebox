@@ -19,6 +19,9 @@ class CardReaderWorker:
         print('Found PN532')
 
         self.pn532.SAM_configuration()
+
+	cachedCardId = None
+
         while True:
             cardId = self.checkCard()
 

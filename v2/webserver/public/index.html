@@ -24,11 +24,19 @@
 
     <h2>Content</h2>
     <div id="albumDiv">
+      <h3>Album</h3>
       <p>Current album: <span data-bind="text:album"></span></p>
     </div>
     <div id="cardDiv">
       <div data-bind="template: { name: 'card-template', data: card }"></div>
     </div>
+    <div id="tracklistDiv">
+      Tracks:
+      <ul data-bind="foreach:tracks">
+        <li data-bind="text:name"></li>
+      </ul>
+    </div>
+
 
     <div id="systemDiv">
       <h2>System status</h2>
@@ -48,7 +56,10 @@
       };
       var albumVm = {
         album: ko.observable()
-      }
+      };
+      var tracklistVm = {
+        tracks: ko.observableArray([]);
+      };
 
       ko.applyBindings(systemVm, document.getElementById('systemDiv'));
       ko.applyBindings(cardVm, document.getElementById('cardDiv'));
@@ -70,6 +81,12 @@
 
         if(data.album) {
           albumVm.album(data.album);
+        }
+
+        if(data.tracklist) {
+          var tracks = JSON.parse(data.tracklist);
+          console.log("PARSED", tracks);
+          tracklistVm.tracks(tracks);
         }
       });
 

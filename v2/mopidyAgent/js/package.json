@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "amqp": "^0.2.6",
     "mopidy": "^0.5.0"
   },
   "devDependencies": {

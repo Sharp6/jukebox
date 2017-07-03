@@ -58,12 +58,13 @@
         album: ko.observable()
       };
       var tracklistVm = {
-        tracks: ko.observableArray([]);
+        tracks: ko.observableArray([])
       };
 
       ko.applyBindings(systemVm, document.getElementById('systemDiv'));
       ko.applyBindings(cardVm, document.getElementById('cardDiv'));
       ko.applyBindings(albumVm, document.getElementById('albumDiv'));
+      ko.applyBindings(tracklistVm, document.getElementById('tracklistDiv'));
 
       //var socket = io.connect('http://localhost:1804');
       var socket = io.connect();

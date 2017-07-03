@@ -8,5 +8,5 @@ var mopidy = new Mopidy({
 	webSocketUrl: "ws://localhost:6680/mopidy/ws/"
 });
 
-var sender = new RabbitSender(ampq);
+var sender = new RabbitSender(amqp);
 var worker = new Worker(mopidy, sender);

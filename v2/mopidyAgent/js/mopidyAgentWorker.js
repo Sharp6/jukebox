@@ -13,8 +13,8 @@ var MopidyAgentWorker = function(mopidy, sender) {
             .then(result => {
                 this.tracks = result.map(track => {
                     return {
-                        name: name,
-                        uri: uri
+                        name: track.name,
+                        uri: track.uri
                     };
                 });
 

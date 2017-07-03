@@ -1,8 +1,8 @@
-var sender = function(ampq) {
-    this.ampq = ampq;
+var sender = function(amqp) {
+    this.amqp = amqp;
 
     this.send = function(key, msg) {
-        amqp.connect('amqp://localhost', function(err, conn) {
+        this.amqp.connect('amqp://localhost', function(err, conn) {
             conn.createChannel(function(err, ch) {
                 var ex = 'jukeboxExchange';
 
@@ -15,3 +15,5 @@ var sender = function(ampq) {
         });
     }.bind(this);
 }
+
+module.exports = sender;

@@ -10,7 +10,7 @@ var worker = function(sender, redis) {
         this.client.get(card, (err, reply) => {
             if(err) {
                 return console.log(err);
-            } else if(reply.length === 0) {
+            } else if(!reply || reply.length === 0) {
                 return console.log("No music found for current card");
             } else {
                 this.sender.send("album",reply);

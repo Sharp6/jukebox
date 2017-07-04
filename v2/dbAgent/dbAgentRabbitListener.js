@@ -2,7 +2,7 @@ var dbAgent = function(amqp, worker) {
     this.amqp = amqp;
     this.worker = worker;
 
-    this.amqp.connect('amqp://localhost', function(err, conn) {
+    this.amqp.connect('amqp://localhost', (err, conn) => {
         conn.createChannel((err, ch) => {
             var ex = 'jukeboxExchange';
             ch.assertExchange(ex, 'topic', {durable: false});

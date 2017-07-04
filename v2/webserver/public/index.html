@@ -62,7 +62,7 @@
       var tracklistVm = {
         tracks: ko.observableArray([]), 
         bindCardToTrack: function(track) {
-          if(cardVm.card().length > 0 && cardVm.card() !== "empty") {
+          if(cardVm.card() && cardVm.card().length > 0 && cardVm.card() !== "empty") {
             console.log("Binding " + cardVm.card() + " to " + track.uri);
             socket.emit('command.save', { uri: track.uri, card: cardVm.card() });
           }

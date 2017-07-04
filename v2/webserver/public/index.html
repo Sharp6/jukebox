@@ -48,6 +48,8 @@
     <script src="/lib/knockout-3.4.2.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      var socket = io.connect();
+
       var systemVm = {
         system: ko.observableArray(["Knockout.js started"])
       };
@@ -58,15 +60,19 @@
         album: ko.observable()
       };
       var tracklistVm = {
-        tracks: ko.observableArray([]);
+        tracks: ko.observableArray([]), 
+        bindCardToTrack: function(track) {
+          if(cardVm.card().length > 0 && cardVm.card() !== "empty") {
+            console.log("Binding " + cardVm.card() + " to " + track.uri);
+            socket.emit('command.save', { uri: track.uri, card: cardVm.card() });
+          }
+        }
       };
 
       ko.applyBindings(systemVm, document.getElementById('systemDiv'));
       ko.applyBindings(cardVm, document.getElementById('cardDiv'));
       ko.applyBindings(albumVm, document.getElementById('albumDiv'));
 
-      //var socket = io.connect('http://localhost:1804');
-      var socket = io.connect();
       socket.on('message', function (data) {
         //socket.emit('my other event', { my: 'data' });
         console.log(data);

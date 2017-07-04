@@ -6,6 +6,8 @@ var path = require('path');
 var io = require('socket.io')(server);
 var amqp = require('amqplib/callback_api');
 
+var Sender = require('webserverRabbitSender');
+var sender = new Sender(amqp);
 
 app.use(express.static(path.join(__dirname,'public')));
 
@@ -15,10 +17,14 @@ server.listen(1804, function(){
 
 io.on('connection', function (socket) {
   socket.emit('message', { system: 'Connected to socket.io server' });
+
+  socket.on('command.save', function (data) {
+    console.log(data);
+    sender.send('command.save', JSON.stringify(data));
+  });
 });
 
 amqp.connect('amqp://localhost', function(err, conn) {
-
   if(err) {
     return console.log(err);
   }

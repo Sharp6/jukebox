@@ -72,6 +72,7 @@
       ko.applyBindings(systemVm, document.getElementById('systemDiv'));
       ko.applyBindings(cardVm, document.getElementById('cardDiv'));
       ko.applyBindings(albumVm, document.getElementById('albumDiv'));
+      ko.applyBindings(tracklistVm, document.getElementById('tracklistDiv'));
 
       socket.on('message', function (data) {
         //socket.emit('my other event', { my: 'data' });

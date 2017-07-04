@@ -11,9 +11,10 @@ var worker = function(sender, redis) {
             if(err) {
                 return console.log(err);
             } else if(!reply || reply.length === 0) {
+                this.sender.send("album", "No music for the current card.");
                 return console.log("No music found for current card");
             } else {
-                this.sender.send("album",reply);
+                this.sender.send("album", reply);
             }            
         });
     }.bind(this);

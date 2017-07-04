@@ -33,7 +33,7 @@
     <div id="tracklistDiv">
       Tracks:
       <ul data-bind="foreach:tracks">
-        <li data-bind="text:name"></li>
+        <li><span data-bind="text:name"></span><button data-bind="click:$parent.bindCardToTrack">Bind</button></li>
       </ul>
     </div>
 

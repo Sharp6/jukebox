@@ -6,7 +6,7 @@ var path = require('path');
 var io = require('socket.io')(server);
 var amqp = require('amqplib/callback_api');
 
-var Sender = require('webserverRabbitSender');
+var Sender = require('./webserverRabbitSender');
 var sender = new Sender(amqp);
 
 app.use(express.static(path.join(__dirname,'public')));

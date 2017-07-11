@@ -17,6 +17,7 @@ server.listen(1804, function(){
 
 io.on('connection', function (socket) {
   socket.emit('message', { system: 'Connected to socket.io server' });
+  sender.send('command.mopidy', "listTracks");
 
   socket.on('command.save', function (data) {
     console.log(data);

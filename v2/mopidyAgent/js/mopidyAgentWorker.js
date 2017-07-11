@@ -7,21 +7,7 @@ var MopidyAgentWorker = function(mopidy, sender) {
 
     this.mopidy.on("state:online", () => {
         this.mopidy.mixer.setVolume(10);
-        this.mopidy.tracklist.clear()
-            .then(() => {
-                return this.mopidy.library.browse("file:///home/pi/music");
-            })    
-            .then(result => {
-                this.tracks = result.map(track => {
-                    return {
-                        name: track.name,
-                        uri: track.uri
-                    };
-                });
-                this.sender.send("tracklist", JSON.stringify(this.tracks));
-            })
-            .catch(console.error.bind(console))
-            .done();
+        this.mopidy.tracklist.clear();
     });
 
     this.doWork = function(message) {
@@ -70,6 +56,21 @@ var MopidyAgentWorker = function(mopidy, sender) {
                 })
                 .then(newVolume => {
                     return this.mopidy.mixer.setVolume(newVolume);
+                })
+                .catch(console.error.bind(console))
+                .done();
+        }
+
+        if(command === "listTracks") {
+            this.mopidy.library.browse("file:///home/pi/music")
+                .then(result => {
+                    this.tracks = result.map(track => {
+                        return {
+                            name: track.name,
+                            uri: track.uri
+                        };
+                    });
+                    this.sender.send("tracklist", JSON.stringify(this.tracks));
                 })
                 .catch(console.error.bind(console))
                 .done();
